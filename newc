@@ -1,0 +1,11 @@
+#!/bin/sh
+
+CONTAINER=`realpath containers/$1`
+IMAGE=`realpath images/$2`
+
+mkdir -p $CONTAINER/fs
+cd $CONTAINER/fs
+mkdir diff work union
+
+sudo mount -t overlay -o upperdir=diff,lowerdir=$IMAGE,workdir=work none union
+

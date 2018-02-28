@@ -1,0 +1,6 @@
+#!/bin/sh
+
+IMAGE=$1
+
+mkdir -p images/$IMAGE
+tar -xf registry/$IMAGE.tar --directory images/$IMAGE

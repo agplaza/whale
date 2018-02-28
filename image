@@ -1,7 +1,0 @@
-#!/bin/sh
-
-mkdir -p images/alpine
-tar -xf registry/alpine.tar --directory images/alpine
-IMAGE=$PWD/images/alpine
-
-$@

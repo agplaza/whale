@@ -1,0 +1,6 @@
+#!/bin/sh
+
+CONTAINER=containers/$1
+
+sudo umount $CONTAINER/fs/union
+rm -rf $CONTAINER
