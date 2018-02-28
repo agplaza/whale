@@ -13,3 +13,12 @@ lowerdir=images/$IMAGE,\
 workdir=containers/$CONTAINER/fs/work \
 none \
 containers/$CONTAINER/fs/union
+
+sudo mkdir \
+/sys/fs/cgroup/cpu,cpuacct/$CONTAINER \
+/sys/fs/cgroup/cpuset/$CONTAINER \
+/sys/fs/cgroup/devices/$CONTAINER \
+/sys/fs/cgroup/blkio/$CONTAINER \
+/sys/fs/cgroup/memory/$CONTAINER \
+/sys/fs/cgroup/net_cls,net_prio/$CONTAINER \
+/sys/fs/cgroup/pids/$CONTAINER

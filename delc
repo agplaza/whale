@@ -2,5 +2,14 @@
 
 CONTAINER=$1
 
+sudo rmdir \
+/sys/fs/cgroup/cpu,cpuacct/$CONTAINER \
+/sys/fs/cgroup/cpuset/$CONTAINER \
+/sys/fs/cgroup/devices/$CONTAINER \
+/sys/fs/cgroup/blkio/$CONTAINER \
+/sys/fs/cgroup/memory/$CONTAINER \
+/sys/fs/cgroup/net_cls,net_prio/$CONTAINER \
+/sys/fs/cgroup/pids/$CONTAINER
+
 sudo umount containers/$CONTAINER/fs/union
 rm -rf containers/$CONTAINER
