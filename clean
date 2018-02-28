@@ -1,4 +1,9 @@
 #!/bin/sh
 
-rm -rf images
+for CONTAINER in `./psc`
+do
+  ./delc $CONTAINER
+done
+
 rm -rf containers
+rm -rf images
