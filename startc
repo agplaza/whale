@@ -14,6 +14,14 @@ fi
 sudo mkdir -p /run/netns
 sudo touch /run/netns/$CONTAINER
 
+sudo sh -c "echo $$ > /sys/fs/cgroup/cpu,cpuacct/$CONTAINER/tasks"
+#sudo sh -c "echo $$ > /sys/fs/cgroup/cpuset/$CONTAINER/tasks"
+sudo sh -c "echo $$ > /sys/fs/cgroup/devices/$CONTAINER/tasks"
+sudo sh -c "echo $$ > /sys/fs/cgroup/blkio/$CONTAINER/tasks"
+sudo sh -c "echo $$ > /sys/fs/cgroup/memory/$CONTAINER/tasks"
+sudo sh -c "echo $$ > /sys/fs/cgroup/net_cls,net_prio/$CONTAINER/tasks"
+sudo sh -c "echo $$ > /sys/fs/cgroup/pids/$CONTAINER/tasks"
+
 sudo unshare \
   --net=/run/netns/$CONTAINER \
   --pid \
@@ -22,8 +30,7 @@ sudo unshare \
   --ipc \
   --fork \
   chroot --userspec $USER containers/$CONTAINER/fs/union \
-    env $ENV /.initc \
-      $CMD
+    env $ENV /.initc $CMD
 
 sudo umount /run/netns/$CONTAINER
 sudo rm /run/netns/$CONTAINER
