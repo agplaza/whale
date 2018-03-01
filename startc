@@ -3,6 +3,8 @@
 CONTAINER=$1
 USER=$2
 CMD=$3
+DROP="cap_chown"
+ENV="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 if [ -z $CMD ]
 then
@@ -12,7 +14,14 @@ fi
 sudo mkdir -p /run/netns
 sudo touch /run/netns/$CONTAINER
 
-sudo unshare --net=/run/netns/$CONTAINER --pid --fork --mount chroot --userspec $USER containers/$CONTAINER/fs/union /.initc $CMD
+sudo unshare \
+  --net=/run/netns/$CONTAINER \
+  --pid \
+  --mount \
+  --fork \
+  chroot --userspec $USER containers/$CONTAINER/fs/union \
+    env $ENV /.initc \
+      $CMD
 
 sudo umount /run/netns/$CONTAINER
 sudo rm /run/netns/$CONTAINER
