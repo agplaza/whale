@@ -9,4 +9,9 @@ then
   CMD="/bin/sh"
 fi
 
-sudo unshare --pid --fork --mount chroot --userspec $USER containers/$CONTAINER/fs/union /.initc $CMD
+sudo mkdir -p /run/netns
+sudo touch /run/netns/$CONTAINER
+
+sudo unshare --net=/run/netns/$CONTAINER --pid --fork --mount chroot --userspec $USER containers/$CONTAINER/fs/union /.initc $CMD
+
+sudo umount /run/netns/$CONTAINER
