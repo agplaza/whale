@@ -1,0 +1,10 @@
+#!/bin/sh
+
+CONTAINER=$1
+
+echo hola
+ip netns pids $CONTAINER | head -n1
+
+PID=`ip netns pids $CONTAINER | head -n1`
+
+sudo nsenter --net=/run/netns/$CONTAINER --pid=/proc/$PID/ns/pid --mount=/proc/$PID/ns/mnt chroot --userspec $USER containers/$CONTAINER/fs/union /.initc $CMD
