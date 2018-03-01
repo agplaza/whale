@@ -5,6 +5,7 @@ IMAGE="alpine"
 USER="root"
 CMD="/bin/sh"
 
+./clean
 ./pulli $IMAGE
 ./newc $CONTAINER $IMAGE
 ./startc $CONTAINER $USER $CMD

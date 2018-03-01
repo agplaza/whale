@@ -4,4 +4,4 @@ CONTAINER=$1
 USER=$2
 CMD=$3
 
-sudo unshare --pid --fork chroot --userspec $USER containers/$CONTAINER/fs/union $CMD
+sudo unshare --pid --fork --mount chroot --userspec $USER containers/$CONTAINER/fs/union /docker/init $CMD

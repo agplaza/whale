@@ -14,6 +14,9 @@ workdir=containers/$CONTAINER/fs/work \
 none \
 containers/$CONTAINER/fs/union
 
+mkdir containers/$CONTAINER/fs/union/docker
+cp init containers/$CONTAINER/fs/union/docker
+
 sudo mkdir \
 /sys/fs/cgroup/cpu,cpuacct/$CONTAINER \
 /sys/fs/cgroup/cpuset/$CONTAINER \

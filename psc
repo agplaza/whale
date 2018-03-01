@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ls containers
+ls containers 2> /dev/null
