@@ -1,0 +1,5 @@
+#!/bin/sh
+
+VOLUME=$1
+
+rm -rf volumes/$VOLUME

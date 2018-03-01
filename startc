@@ -15,3 +15,4 @@ sudo touch /run/netns/$CONTAINER
 sudo unshare --net=/run/netns/$CONTAINER --pid --fork --mount chroot --userspec $USER containers/$CONTAINER/fs/union /.initc $CMD
 
 sudo umount /run/netns/$CONTAINER
+sudo rm /run/netns/$CONTAINER

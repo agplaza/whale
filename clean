@@ -5,5 +5,11 @@ do
   ./delc $CONTAINER
 done
 
+for VOLUME in `./listv`
+do
+  ./delv $VOLUME
+done
+
 rm -rf containers
+rm -rf volumes
 rm -rf images
