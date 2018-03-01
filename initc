@@ -1,5 +1,6 @@
 #!/bin/sh
 
 mount -t proc proc /proc
+ip link set lo up
 
 $@
