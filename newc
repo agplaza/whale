@@ -1,7 +1,8 @@
 #!/bin/sh
 
 CONTAINER=$1
-IMAGE=$2
+IMAGES=$2
+LOWERDIR=`echo $IMAGES | tr ":" " " | xargs printf "images/%s:"`
 
 mkdir -p containers/$CONTAINER/fs/diff
 mkdir -p containers/$CONTAINER/fs/work
@@ -12,7 +13,7 @@ touch containers/$CONTAINER/volumes
 
 sudo mount -t overlay -o \
 upperdir=containers/$CONTAINER/fs/diff,\
-lowerdir=containers/$CONTAINER/fs/config:images/$IMAGE,\
+lowerdir=containers/$CONTAINER/fs/config:${LOWERDIR%?},\
 workdir=containers/$CONTAINER/fs/work \
 none \
 containers/$CONTAINER/fs/union
