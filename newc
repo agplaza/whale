@@ -9,8 +9,10 @@ LOWERDIR="${LOWERDIR%?}"
 mkdir -p containers/$CONTAINER/fs/diff
 mkdir -p containers/$CONTAINER/fs/work
 mkdir -p containers/$CONTAINER/fs/union
-mkdir -p containers/$CONTAINER/fs/config
+mkdir -p containers/$CONTAINER/fs/config/dev
 cp initc containers/$CONTAINER/fs/config/.initc
+sudo mknod -m 666 containers/$CONTAINER/fs/config/dev/null c 1 3
+sudo mknod -m 666 containers/$CONTAINER/fs/config/dev/zero c 1 5
 touch containers/$CONTAINER/volumes
 
 sudo mount -t overlay -o \
