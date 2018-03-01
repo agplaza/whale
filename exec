@@ -5,7 +5,7 @@ USER=$2
 CMD=$3
 DROP="cap_chown"
 ENV="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-PID=`ip netns pids $CONTAINER | head -n1`
+PID=`cat /sys/fs/cgroup/memory/800eed18b1538/tasks | head -n1`
 
 if [ -z $CMD ]
 then

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+CONTAINER=$1
+LIMIT=$2
+CGROUP_DIR=/sys/fs/cgroup/memory/$CONTAINER
+
+sudo sh -c "echo $LIMIT > $CGROUP_DIR/memory.limit_in_bytes"
+

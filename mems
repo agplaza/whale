@@ -1,0 +1,8 @@
+#!/bin/sh
+
+CONTAINER=$1
+SWAPPINESS=$2
+CGROUP_DIR=/sys/fs/cgroup/memory/$CONTAINER
+
+sudo sh -c "echo $SWAPPINESS > $CGROUP_DIR/memory.swappiness"
+
