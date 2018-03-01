@@ -12,4 +12,4 @@ done
 
 rm -rf containers
 rm -rf volumes
-rm -rf images
+sudo rm -rf images

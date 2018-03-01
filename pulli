@@ -3,7 +3,7 @@
 IMAGE=$1
 
 mkdir -p images/$IMAGE
-tar -xf registry/$IMAGE.tar --directory images/$IMAGE
+sudo tar -xf registry/$IMAGE.tar --directory images/$IMAGE
 
 sudo mknod -m 666 images/$IMAGE/dev/null c 1 3
 sudo mknod -m 666 images/$IMAGE/dev/zero c 1 5
