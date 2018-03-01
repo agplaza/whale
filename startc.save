@@ -20,6 +20,7 @@ sudo unshare \
   --mount \
   --uts \
   --ipc \
+  --user \
   --fork \
   chroot --userspec $USER containers/$CONTAINER/fs/union \
     env $ENV /.initc \
