@@ -1,0 +1,7 @@
+#!/bin/sh
+
+CONTAINER=$1
+TARGET=$2
+
+sudo umount containers/$CONTAINER/fs/union/$TARGET
+sed -i "/$TARGET/d" containers/$CONTAINER/volumes

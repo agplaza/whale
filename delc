@@ -11,5 +11,10 @@ sudo rmdir \
 /sys/fs/cgroup/net_cls,net_prio/$CONTAINER \
 /sys/fs/cgroup/pids/$CONTAINER
 
+for TARGET in `cat containers/$CONTAINER/volumes`
+do
+  ./umountv $CONTAINER $TARGET
+done
+
 sudo umount containers/$CONTAINER/fs/union
 rm -rf containers/$CONTAINER
