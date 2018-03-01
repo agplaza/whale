@@ -1,0 +1,7 @@
+#!/bin/sh
+
+CONTAINER=$1
+SOURCE=$2
+TARGET=$3
+
+cp -r $SOURCE containers/$CONTAINER/fs/union/$TARGET
