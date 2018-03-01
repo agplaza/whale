@@ -5,11 +5,6 @@ IMAGE=$1
 USER=$2
 CMD=$3
 
-if [ -z $CMD ]
-then
-  CMD="/bin/sh"
-fi
-
 ./pulli $IMAGE
 ./newc $CONTAINER $IMAGE
 ./startc $CONTAINER $USER $CMD
