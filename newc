@@ -1,8 +1,10 @@
 #!/bin/sh
 
 CONTAINER=$1
-IMAGES=$2
-LOWERDIR=`echo $IMAGES | tr ":" " " | xargs printf "images/%s:"`
+LAYERS=$2
+
+LOWERDIR=`echo $LAYERS | tr ":" " " | xargs printf "images/%s:"`
+LOWERDIR="${LOWERDIR%?}"
 
 mkdir -p containers/$CONTAINER/fs/diff
 mkdir -p containers/$CONTAINER/fs/work
@@ -13,7 +15,7 @@ touch containers/$CONTAINER/volumes
 
 sudo mount -t overlay -o \
 upperdir=containers/$CONTAINER/fs/diff,\
-lowerdir=containers/$CONTAINER/fs/config:${LOWERDIR%?},\
+lowerdir=containers/$CONTAINER/fs/config:$LOWERDIR,\
 workdir=containers/$CONTAINER/fs/work \
 none \
 containers/$CONTAINER/fs/union

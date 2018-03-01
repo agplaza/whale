@@ -1,8 +1,8 @@
 #!/bin/sh
 
-IMAGES=$1
+LAYERS=$1
 
-for IMAGE in `echo $IMAGES | tr ":" " "`
+for IMAGE in `echo $LAYERS | tr ":" " "`
 do
   mkdir -p images/$IMAGE
   sudo tar -xf registry/$IMAGE.tar --directory images/$IMAGE
