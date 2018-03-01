@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CONTAINER="$1"
+PERCENTAGE="$2"
+CGROUP_DIR="/sys/fs/cgroup/cpu/$CONTAINER"
+
+PERIOD=$(( PERCENTAGE * 10000 ))
+
+sudo sh -c "echo $PERIOD > $CGROUP_DIR/cpu.cfs_period_us"
+sudo sh -c "echo 1000000 > $CGROUP_DIR/cpu.cfs_quota_us"
