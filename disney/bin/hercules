@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "•͡˘ ͜ʖ•͡˘ Lifting CPU usage effortlessly..."
+dd if=/dev/zero of=/dev/null
