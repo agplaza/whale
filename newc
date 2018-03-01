@@ -6,10 +6,11 @@ IMAGE=$2
 mkdir -p containers/$CONTAINER/fs/diff
 mkdir -p containers/$CONTAINER/fs/work
 mkdir -p containers/$CONTAINER/fs/union
+mkdir -p containers/$CONTAINER/fs/config
 
 sudo mount -t overlay -o \
 upperdir=containers/$CONTAINER/fs/diff,\
-lowerdir=images/$IMAGE,\
+lowerdir=containers/$CONTAINER/fs/config:images/$IMAGE,\
 workdir=containers/$CONTAINER/fs/work \
 none \
 containers/$CONTAINER/fs/union
