@@ -1,10 +1,22 @@
 #!/bin/sh
 
 CONTAINER=$1
-
-echo hola
-ip netns pids $CONTAINER | head -n1
-
+USER=$2
+CMD=$3
+DROP="cap_chown"
+ENV="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 PID=`ip netns pids $CONTAINER | head -n1`
 
-sudo nsenter --net=/run/netns/$CONTAINER --pid=/proc/$PID/ns/pid --mount=/proc/$PID/ns/mnt chroot --userspec $USER containers/$CONTAINER/fs/union /.initc $CMD
+if [ -z $CMD ]
+then
+  CMD="/bin/sh"
+fi
+
+sudo nsenter \
+  --net=/run/netns/$CONTAINER \
+  --pid=/proc/$PID/ns/pid \
+  --mount=/proc/$PID/ns/mnt \
+  --uts=/proc/$PID/ns/uts \
+  --ipc=/proc/$PID/ns/ipc \
+  chroot --userspec $USER containers/$CONTAINER/fs/union \
+    env $ENV $CMD
