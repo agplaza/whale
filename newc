@@ -6,8 +6,8 @@ IMAGE=$2
 mkdir -p containers/$CONTAINER/fs/diff
 mkdir -p containers/$CONTAINER/fs/work
 mkdir -p containers/$CONTAINER/fs/union
-mkdir -p containers/$CONTAINER/fs/config/docker
-cp init containers/$CONTAINER/fs/config/docker
+mkdir -p containers/$CONTAINER/fs/config
+cp initc containers/$CONTAINER/fs/config/.initc
 
 sudo mount -t overlay -o \
 upperdir=containers/$CONTAINER/fs/diff,\
