@@ -1,0 +1,12 @@
+#!/bin/sh
+
+CONTAINER=$1
+
+sudo ip link add veth0 type veth peer name veth1
+
+sudo ip link set veth1 netns $CONTAINER
+sudo ip netns exec $CONTAINER ip link set veth1 up
+
+sudo ip netns exec $CONTAINER ip addr add 169.254.1.2/30 dev veth1
+sudo ip link set veth0 up
+sudo ip addr add 169.254.1.1/30 dev veth0
